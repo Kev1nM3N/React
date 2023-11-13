@@ -2,8 +2,9 @@
 import type { NextPage } from "next";
 import Header from "@/components/Header";
 import Image from "next/image";
+import Banner from "@/components/Banner";
 
-//52:51
+//1:01:11
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       to-[#010511] lg:h-[140vh]">
         <Header />
         <main>
-          {/* Banner */}
+          <Banner />
           <section>
             {/* Row */}
             {/* Row */}
