@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import Header from "@/components/Header";
 import Image from "next/image";
 import Banner from "@/components/Banner";
@@ -6,7 +6,7 @@ import requests from "@/utils/requests";
 
 //1:01:11
 
-export default function Home({ netflixOriginals }) {
+const Home = ({ netflixOriginals }) => {
   console.log(netflixOriginals)
   
   return (
@@ -30,7 +30,7 @@ export default function Home({ netflixOriginals }) {
   );
 }
 
-export const pageFirm = async () => {
+export const getServerSideProps = async () => {
   const [
     netflixOriginals,
     trendingNow,
