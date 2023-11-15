@@ -8,6 +8,7 @@ import requests from "@/utils/requests";
 
 export default function Home({ netflixOriginals }) {
   console.log(netflixOriginals)
+  
   return (
     <>
       <div className="relative h-screen bg-gradient-to-b from-gray-900/10
