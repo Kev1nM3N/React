@@ -17,20 +17,29 @@ function App() {
   let passwordStore = document.querySelector('input[type="password"]');
   //email@email123.com or welcome@123.com
   //123Password or digimon
+  //newgen@webhook.com  69Password?
+ 
 
   React.useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setLoading(false)
       if (user) {
         setUser1(user)
+        setButtonText(user.email[0].toUpperCase());
       }
     })
   }, [])
+
+  function register2 (){
+    setLoading(true)
+    register()
+  }
 
   function register() {
     console.log(`registered`);
     createUserWithEmailAndPassword(auth, email, password)
     .then((user) => {
+      setLoading(false)
       console.log(user);
       emailStore.value = '';
       passwordStore.value = '';
@@ -40,22 +49,31 @@ function App() {
     })
   }
 
+  function logIn2 (){
+    setLoading(true) //I thought I didn't need to hard code this, but doing so worked.
+    logIn()
+  }
+
   function logIn() {
     signInWithEmailAndPassword(auth, email, password)
     .then((existingUser) => {
+      setLoading(false)
       setButtonText(existingUser.user.email[0].toUpperCase())
+      console.log(existingUser.user.email);
       setUser1(existingUser.user)
       emailStore.value = '';
       passwordStore.value = '';
+      logOut(existingUser)
     })
     .catch((error) => {
       console.log(error);
     })
   }
 
-  function logOut(params) {
+  function logOut(existingUser) {
+    console.log(existingUser);
     if (!user1.email) {
-      return alert('Already logged out, please log back in')
+      return null
     }
 
     console.log(`loggedout`);
@@ -67,11 +85,10 @@ function App() {
     
   return (
     <>
-      <Nav KDLogo={KDLogo} logIn={logIn} buttonText={buttonText} register={register}/>
-
+      <Nav KDLogo={KDLogo} logIn2={logIn2} buttonText={buttonText} loading={loading} register2={register2}/>
       <main className='text-center' style={{height: "calc(100vh - 75px)"}}>
           <div className='h-full max-w-[600px] mx-auto'>
-            <Firsthalf logOut={logOut}/>
+            <Firsthalf />
             <Secondhalf  loading={loading} user1={user1} setEmail={setEmail} setPassword={setPassword}/>
           </div>
       </main>

@@ -1,6 +1,7 @@
 import React from 'react'
+import Loadingstate from './Loadingstate'
 
-function Nav({KDLogo, logIn, buttonText, register}) {
+function Nav({KDLogo, logIn2, buttonText, register2, loading}) {
   return (
     <nav className='h-[75px] w-full flex justify-around items-center'>
           <figure>
@@ -12,10 +13,14 @@ function Nav({KDLogo, logIn, buttonText, register}) {
             <li>Pendants</li>
             <li>Privacy</li>
           </ul>
-
+          
           <div className='w-[200px] flex justify-evenly'>
-            <button onClick={logIn}>{buttonText}</button>
-            <button onClick={register}>Register</button>
+            { loading ? <Loadingstate /> : 
+              <>
+                <button onClick={logIn2}>{buttonText}</button>
+                <button onClick={register2}>Register</button>
+              </>
+            }
           </div>
     </nav>
   )

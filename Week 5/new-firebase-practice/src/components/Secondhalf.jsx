@@ -1,12 +1,13 @@
 import React from 'react'
+import Loadingstate from './Loadingstate'
 
 function Secondhalf({loading, user1, setEmail, setPassword}) {
   return (
-    <div className='h-1/2 py-8'>
+    <div className='flex flex-col items-center h-1/2 py-8'>
         {
-        loading ? 'Loading...' : <h3 className='text-4xl'>Email: <span>{user1.email}</span></h3>
+        loading ? <Loadingstate /> : <h3 className='text-4xl'>Welcome <span>{user1.email}</span></h3>
         }
-        <div className='mt-5'>
+        <div className='my-3'>
         <h2 className='text-xl'>Your login details</h2>
         <div className='flex flex-col'>
             <div>
