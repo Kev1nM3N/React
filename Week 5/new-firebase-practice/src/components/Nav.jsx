@@ -10,7 +10,7 @@ function Nav({KDLogo, logIn2, buttonText, register2, loading}) {
 
           <ul className='flex translate-x-8 justify-evenly w-[300px] p-[2px]'>
             <li>Meetings</li>
-            <li>Pendants</li>
+            <li><a title='fancy comic website' target='_blank' href="https://www.actualized.org/">Pendants</a></li>
             <li>Privacy</li>
           </ul>
           
