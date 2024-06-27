@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"; //didn't need brackets
 import Posts from "./pages/Posts";
-//12:20
 
 function App() {
   return (
