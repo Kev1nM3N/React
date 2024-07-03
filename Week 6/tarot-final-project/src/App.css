@@ -474,6 +474,10 @@ LARGE AND SMALL MOBILE DEVICES
 */
 
 @media (max-width: 1285px) {
+    nav figure {
+      transform: translateX(20px);
+    }
+
     .searchbarButton {
         padding: 0.8rem 4.5rem;
         right: 4.5rem;

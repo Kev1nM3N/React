@@ -3,7 +3,7 @@ import KDLogo from '../assets/KD-left-transparent-png.png'
 import profilePic from '../assets/Kevin AI.jpeg'
 import closeMenu2 from '../assets/close.svg'
 import hamburgerMenu from '../assets/hamburger menu.svg'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Nav() {
   function openMenu (){
@@ -14,8 +14,14 @@ function closeMenu (){
     document.body.classList.remove(`menu__open`)
 }
 
+const location = useLocation();
+
+const navStyle = {
+    backgroundColor: location.pathname === "/main" ? "#fff8e7" : "initial"
+};
+
   return (
-    <nav>
+    <nav style={navStyle}>
       <div className="left-side">
         <img
           className="headerLogo"
@@ -30,18 +36,24 @@ function closeMenu (){
 
       <div className="right-side">
         <ul className="AboutInfo">
-          <a className="link__hover-effect" href="javascript:void(0)">
-            <li>About</li>
-          </a>
-          <a className="link__hover-effect" href="javascript:void(0)">
-            <li>Blog</li>
-          </a>
-          <a className="link__hover-effect" href="javascript:void(0)">
-            <li>Contact</li>
-          </a>
+          <Link to="/">
+            <li className="link__hover-effect">Home</li>
+          </Link>
+          <Link to={null}>
+            <li className="link__hover-effect">Contact</li>
+          </Link>
+          <Link to="/main">
+            <li className="link__hover-effect">Browse Cards</li>
+          </Link>
+          <Link to={null}>
+            <li className="link__hover-effect">Login</li>
+          </Link>
+          <Link to={null}>
+            <li className="link__hover-effect">Register</li>
+          </Link>
         </ul>
 
-        <a className="btn__menu--link" href="javascript:void(0)">
+        {/* <a className="btn__menu--link" href="javascript:void(0)">
           <img
             onClick={openMenu}
             src={hamburgerMenu}
@@ -85,7 +97,7 @@ function closeMenu (){
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
