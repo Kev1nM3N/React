@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Library, library } from '@fortawesome/fontawesome-svg-core';
+import { faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 
+library.add(faXmark, faBars)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App />
