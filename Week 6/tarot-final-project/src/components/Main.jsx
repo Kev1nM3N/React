@@ -1,10 +1,9 @@
 import React from 'react'
 import tarotBackDesign from '../assets/Tarot back design.jpg'
 import deathArcanaCover from '../assets/Death.jpg'
-import Nav from './Nav'
 import Footer from './Footer'
 
-function Main() {
+function Main({toggleModal}) {
 
   return (
     <>
@@ -41,7 +40,7 @@ function Main() {
                 </div>
             </div>
         </main>
-        <Footer />
+        <Footer toggleModal={toggleModal}/>
     </>
   )
 }

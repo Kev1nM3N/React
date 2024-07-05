@@ -1,10 +1,9 @@
 import React from 'react'
-import Modal from './Modal'
 
 function Card() {
   return (
     <>
-      <Modal />
+      <h1>Hello World</h1>
     </>
   )
 }

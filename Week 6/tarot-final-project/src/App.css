@@ -131,6 +131,10 @@ a:hover {
     align-items: center;
 }
 
+.AboutInfo:first-child(){ /*Let's try this*/
+    display: none;
+}
+
 .registerButton {
     padding: 0.8rem 2rem;
     border-radius: 22px;
@@ -312,6 +316,11 @@ MODAL PAGE
     line-height: 1.75;
 }
 
+.red {
+    color: red;
+    font-weight: 700;
+}
+
 label {
     font-size: 14px;
     font-weight: bold;
@@ -321,7 +330,7 @@ label {
     width: 100%;
     background-color: #242424;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     outline: none;
     border: 3px solid #c0c4cc;
     border-top: none;
@@ -662,25 +671,24 @@ footer {
 
 .footer__anchor:hover .top {
     opacity: 1;
-    transform: translateX(6rem);
+    transform: translateX(1.4rem);
 }
 
 .top {
     position: absolute;
     right: 0;
-    bottom: 2.5rem;
+    bottom: 1.8rem;
     transition: all 300ms ease;
     z-index: 1;
     opacity: 0;
 }
 
 .upArrow {
-    width: 16px;
+    font-size: 28px;
 }
 
 .footer__logo--img {
-    width: 180px;
-    /* filter: invert(1); */
+    width: 150px;
 }
 
 .footer__social--list {
