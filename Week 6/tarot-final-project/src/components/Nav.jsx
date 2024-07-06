@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import Modal from "./Modal";
+//Use Modal backdrop as a component
 
 function Nav({ toggleModal }) {
   function openMenu (){
@@ -14,12 +15,7 @@ function closeMenu (){
     document.body.classList.remove(`menu__open`)
 }
 
-
 const location = useLocation();
-
-if (location.pathname === "/"){
-  
-}
 
 const navStyle = {
   backgroundColor: location.pathname === "/main" ? "#fff8e7" : "initial"
@@ -37,9 +33,11 @@ const navStyle = {
 
       <div className="right-side">
         <ul className="AboutInfo">
-          <Link to="/">
-            <li className="link__hover-effect">Home</li>
-          </Link>
+          {location.pathname !== "/" && (
+            <Link to="/">
+              <li className="link__hover-effect">Home</li>
+            </Link>
+          )}
           <Link to={null}>
             <li onClick={toggleModal} className="link__hover-effect">Contact</li>
           </Link>
@@ -78,7 +76,7 @@ const navStyle = {
               </Link>
             </li>
             <li>
-              <Link to={null} className="nav__link">
+              <Link to={null} onClick={toggleModal} className="nav__link">
                 Contact
               </Link>
             </li>
