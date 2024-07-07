@@ -30,7 +30,7 @@ function Footer({toggleModal}) {
                     </span>
                 </Link>
                 <div className="footer__social--list">
-                    <Link to="/" className="
+                    <Link to="/" onClick={scrollToTop} className="
                     footer__social--link
                     link__hover-effect
                     ">

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import Modal from "./Modal";
-//Use Modal backdrop as a component
+//Use menu backdrop as a component
 
 function Nav({ toggleModal }) {
   function openMenu (){
@@ -81,7 +81,7 @@ const navStyle = {
               </Link>
             </li>
             <li>
-              <Link to={null} className="nav__link">
+              <Link to="/main" onClick={closeMenu} className="nav__link">
                 Browse Cards
               </Link>
             </li>
