@@ -12,8 +12,8 @@ function Home() {
                 </p>
                 
                 <div className="searchBox">
-                    <input className="searchbar" type="search" placeholder="Ask a Question"/>
-                    <button className="searchbarButton">Answer</button>
+                    <input className="searchbar" type="search" placeholder="Search a Card"/>
+                    <button className="searchbarButton">Find</button>
                 </div>
             </div>
 

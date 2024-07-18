@@ -45,6 +45,21 @@ nav {
     display: none;
 }
 
+.slideAnimation {
+    animation: slideOut 300ms ease;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+      }
+
+
+      100% {
+        transform: translateX(100%);
+      }
+}
+
 
 #personal-img {
     width: 50px;
@@ -504,7 +519,7 @@ header h1, header p {
 
 
 .searchbar:focus {
-    border-color: #6415FF;
+    border-color: pink;
     outline: 0;
 }
 
@@ -716,8 +731,50 @@ LARGE AND SMALL MOBILE DEVICES
 
 */
 
-@media (max-width: 1285px) {
+@media (max-width: 2103px){
+    .searchbarButton {
+        right: 7.3rem;
+    }
+}
 
+
+@media (max-width: 2000px){
+    .searchbarButton {
+        right: 7rem;
+    }
+}
+
+@media (max-width: 1768px){
+    .searchbarButton {
+        right: 6.2rem;
+    }
+}
+
+@media (max-width: 1557px){
+    .searchbarButton {
+        right: 5.5rem;
+    }
+}
+
+@media (max-width: 1529px){
+    .searchbarButton {
+        right: 5.3rem;
+    }
+}
+
+@media (max-width: 1523px){
+    .searchbarButton {
+        right: 5rem;
+    }
+}
+
+@media (max-width: 1296px){
+    .searchbarButton {
+        right: 4.6rem;
+    }
+}
+
+@media (max-width: 1285px) {
     .searchbarButton {
         padding: 0.8rem 4.5rem;
         right: 4.5rem;

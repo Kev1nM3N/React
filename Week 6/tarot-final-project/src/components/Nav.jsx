@@ -1,18 +1,14 @@
 import React from "react";
 import KDLogo from '../assets/KD-left-transparent-png.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import Modal from "./Modal";
-//Use menu backdrop as a component
+import Backdrop from "./Backdrop";
 
 function Nav({ toggleModal }) {
   function openMenu (){
     document.body.classList += (` menu__open`)
-}
-
-function closeMenu (){
-    document.body.classList.remove(`menu__open`)
 }
 
 const location = useLocation();
@@ -62,44 +58,9 @@ const navStyle = {
           />
         </Link>
 
-        <div className="menu__backdrop">
-          <FontAwesomeIcon 
-            icon={faXmark}
-            className="btn__menu btn__menu--close click"
-            onClick={closeMenu}
-            style={{cursor: "pointer", fontSize: '25px'}}
-          />
-          <ul className="menu__links">
-            <li>
-              <Link to="/" onClick={closeMenu} className="nav__link">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to={null} onClick={toggleModal} className="nav__link">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link to="/main" onClick={closeMenu} className="nav__link">
-                Browse Cards
-              </Link>
-            </li>
-            <li>
-              <Link to={null} className="nav__link">
-                Log in
-              </Link>
-            </li>
-            <li>
-              <Link to={null} className="nav__link">
-                <button className="registerButton">Register</button>
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Backdrop openMenu={openMenu} toggleModal={toggleModal}/>
       </div>
 
-      {/* Adding the modal here */}
       <Modal toggleModal={toggleModal}/>
     </nav>
   );
