@@ -492,6 +492,37 @@ header h1, header p {
     margin: 12px 0;
 }
 
+.mainSearchBox {
+    padding: 16px 24px;
+    background-color: var(--cosmic-latte);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainSearchBar {
+    width: 40%;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 99px;
+    border: 2px solid rgba(45, 84, 94, 0.1);
+    padding: 0 32px;
+    transition: all 300ms ease;
+}
+
+.mainsearchbarButton {
+    padding: 0.7rem 3.6rem;
+    margin-left: 8px;
+    border-radius: 22px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 800;
+    transition: all 300ms ease;
+    cursor: pointer;
+    background-color: var(--Day-Blue-Shadow);
+    color: var(--Dusty-White);
+}
+
 .searchBox {
     position: relative;
     width: 100%;
@@ -513,12 +544,12 @@ header h1, header p {
     font-size: 18px;
 }
 
-.searchbar:hover {
+.searchbar:hover, .mainSearchBar:hover {
     border-color: rgb(160 174 192);
 }
 
 
-.searchbar:focus {
+.searchbar:focus, .mainSearchBar:focus {
     border-color: pink;
     outline: 0;
 }
@@ -538,7 +569,7 @@ header h1, header p {
     color: var(--Dusty-White);
 }
 
-.searchbarButton:hover, .registerButton:hover {
+.searchbarButton:hover, .registerButton:hover, .mainsearchbarButton:hover {
     box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
     background-color: rgb(29 78 216 / 1);
 }
