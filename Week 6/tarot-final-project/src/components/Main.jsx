@@ -11,60 +11,69 @@ function Main({ toggleModal }) {
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [filter, setFilter] = useState(""); // State to store the filter value
+  const [loading, setLoading] = useState(true);
+  let mainSearchBar = document.querySelector(".mainSearchBar")
+
+  async function fetchCards(searchTerm = '') {
+    const response = await axios.get("https://tarotapi.dev/api/v1/cards");
+    let allCards = response.data.cards;
+    let onlyMajorCards = allCards.filter((element) => element.type === "major");
+
+    // EDITING THE CARDS TO MY LIKING
+    let storeIn = onlyMajorCards.splice(-2, 1);
+    storeIn[0].value = "0";
+    onlyMajorCards.unshift(storeIn[0]);
+    onlyMajorCards.find((element) =>
+      element.name === "Fortitude" ? (element.name = "Strength") : null
+    );
+    onlyMajorCards.find((element) =>
+      element.name === "The Last Judgment"
+        ? (element.name = "Judgement")
+        : null
+    );
+    let newMajorCards = onlyMajorCards;
+
+    let mergedCards = [
+      ...newMajorCards,
+      ...allCards.filter((card) => card.type !== "major"),
+    ];
+    let minorMergedCards = mergedCards.filter(
+      (element) => element.type === "minor"
+    );
+
+    minorMergedCards.find((element) => {
+      if (["page", "knight", "queen", "king"].includes(element.value)) {
+        element.category = "court";
+      }
+    });
+
+    let faceMergedCards = minorMergedCards.filter(
+      (element) => element.category
+    );
+
+    // NOW ADDING IMAGES TO EVERY CARD
+
+    mergedCards.forEach((card) => {
+      if (card.type === "major" || card.type === "minor") {
+        card.image = cardImageMapping[card.name] || null;
+      }
+    });
+
+    if (searchTerm) {
+      mergedCards = mergedCards.filter((card) =>
+        card.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setCards(mergedCards);
+    setFilteredCards(mergedCards); // Initialize filteredCards with all cards
+  }
 
   useEffect(() => {
-    let loadingBackground = document.querySelector(`.loading__background`)
-    async function fetchCards() {
-      const response = await axios.get("https://tarotapi.dev/api/v1/cards");
-      let allCards = response.data.cards;
-      let onlyMajorCards = allCards.filter((element) => element.type === "major");
-
-      // EDITING THE CARDS TO MY LIKING
-      let storeIn = onlyMajorCards.splice(-2, 1);
-      storeIn[0].value = "0";
-      onlyMajorCards.unshift(storeIn[0]);
-      onlyMajorCards.find((element) =>
-        element.name === "Fortitude" ? (element.name = "Strength") : null
-      );
-      onlyMajorCards.find((element) =>
-        element.name === "The Last Judgment"
-          ? (element.name = "Judgement")
-          : null
-      );
-      let newMajorCards = onlyMajorCards;
-
-      let mergedCards = [
-        ...newMajorCards,
-        ...allCards.filter((card) => card.type !== "major"),
-      ];
-      let minorMergedCards = mergedCards.filter(
-        (element) => element.type === "minor"
-      );
-
-      minorMergedCards.find((element) => {
-        if (["page", "knight", "queen", "king"].includes(element.value)) {
-          element.category = "court";
-        }
-      });
-
-      let faceMergedCards = minorMergedCards.filter(
-        (element) => element.category
-      );
-
-      // NOW ADDING IMAGES TO EVERY CARD
-
-      mergedCards.forEach((card) => {
-        if (card.type === "major" || card.type === "minor") {
-          card.image = cardImageMapping[card.name] || null;
-        }
-      });
-
-      setCards(mergedCards);
-      setFilteredCards(mergedCards); // Initialize filteredCards with all cards
-    }
     setTimeout(() => {
-        fetchCards()
-        loadingBackground.remove();
+      let loadingBackground = document.querySelector(".loading__background")
+      fetchCards();
+      loadingBackground.remove();
     }, 2000);
   }, []);
 
@@ -85,12 +94,21 @@ function Main({ toggleModal }) {
     setFilter(event.target.value);
   }
 
+  function singleCardSearch() {
+    const searchBar = document.querySelector('.mainSearchBar');
+    const searchBarValue = searchBar.value;
+    fetchCards(searchBarValue);
+  }
 
   return (
     <>
         <div className="mainSearchBox">
-            <input className="mainSearchBar" type="search" placeholder="Search a Card"/>
-            <button className="mainsearchbarButton">Find</button>
+            <input onKeyDown={(event) => {
+              if (event.key === 'Enter'){
+                singleCardSearch()
+              }
+            }} className="mainSearchBar" type="search" placeholder="Search a Card"/>
+            <button onClick={singleCardSearch} className="mainsearchbarButton">Find</button>
         </div>
       <main>
         <div className="main__header">
