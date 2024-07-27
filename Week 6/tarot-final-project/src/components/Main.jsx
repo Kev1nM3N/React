@@ -4,10 +4,12 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import tarotBackDesign from "../assets/Tarot back design.jpg";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import cardImageMapping from "../cardImageMapping";
 
 function Main({ toggleModal }) {
+  const { query } = useParams();
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [filter, setFilter] = useState(""); // State to store the filter value
@@ -90,6 +92,15 @@ function Main({ toggleModal }) {
     setFilteredCards(filtered);
   }, [filter, cards]);
 
+  useEffect(() => {
+    if (query) {
+      const filtered = cards.filter((card) =>
+        card.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredCards(filtered);
+    }
+  }, [query, cards]);
+
   function handleFilterChange(event) {
     setFilter(event.target.value);
   }
@@ -115,6 +126,7 @@ function Main({ toggleModal }) {
           <h2>The Rider-Waite Smith Deck</h2>
 
           <select name="" id="filter" onChange={handleFilterChange}>
+            <option value="">Null</option>
             <option value="">All</option>
             <option value="MAJOR">Major Arcana</option>
             <option value="MINOR">Minor Arcana</option>

@@ -1,7 +1,18 @@
 import React from 'react'
 import crystalBall from '../assets/tarot with crystal ball display.png'
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Home() {
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+      const searchBar = document.querySelector(".searchbar");
+      const searchBarValue = searchBar.value;
+      navigate(`/search/${searchBarValue}`);
+    };
+
+
   return (
     <header>
         <div className="header__left-side">
@@ -13,7 +24,7 @@ function Home() {
                 
                 <div className="searchBox">
                     <input className="searchbar" type="search" placeholder="Search a Card"/>
-                    <button className="searchbarButton">Find</button>
+                    <button onClick={handleSearch} className="searchbarButton">Find</button>
                 </div>
             </div>
 

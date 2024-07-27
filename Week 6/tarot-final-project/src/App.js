@@ -23,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path=":id" element={<Card />}/>
+          <Route path="/search/:query" element={<Main />} />
           <Route path="/main" element={<Main toggleModal={toggleModal} />}/>
         </Routes>
       </section>
