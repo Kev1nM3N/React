@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import cardImageMapping from "../cardImageMapping";
+import { useNavigate } from 'react-router-dom';
 
 function Main({ toggleModal }) {
   const { query } = useParams();
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [filter, setFilter] = useState(""); // State to store the filter value
+  const navigate = useNavigate();
   let mainSearchBar = document.querySelector(".mainSearchBar")
 
   async function fetchCards(searchTerm = '') {
@@ -90,9 +92,6 @@ function Main({ toggleModal }) {
     } else if (filter === "FACE") {
       filtered = cards.filter((card) => card.category === "court");
     }
-    else {
-      console.log("No used expressions");
-    }
     setFilteredCards(filtered);
   }, [filter, cards]);
 
@@ -112,6 +111,7 @@ function Main({ toggleModal }) {
   function singleCardSearch() {
     const searchBar = document.querySelector('.mainSearchBar');
     const searchBarValue = searchBar.value;
+    navigate(`/main`);
     fetchCards(searchBarValue);
   }
 
