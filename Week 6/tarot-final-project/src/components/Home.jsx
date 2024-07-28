@@ -23,7 +23,11 @@ function Home() {
                 </p>
                 
                 <div className="searchBox">
-                    <input className="searchbar" type="search" placeholder="Search a Card"/>
+                    <input onKeyDown={(event) => {
+                        if (event.key === "Enter"){
+                          handleSearch();
+                        }
+                    }} className="searchbar" type="search" placeholder="Search a Card"/>
                     <button onClick={handleSearch} className="searchbarButton">Find</button>
                 </div>
             </div>

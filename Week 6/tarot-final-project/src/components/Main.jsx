@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import tarotBackDesign from "../assets/Tarot back design.jpg";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
@@ -13,7 +12,6 @@ function Main({ toggleModal }) {
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [filter, setFilter] = useState(""); // State to store the filter value
-  const [loading, setLoading] = useState(true);
   let mainSearchBar = document.querySelector(".mainSearchBar")
 
   async function fetchCards(searchTerm = '') {
@@ -82,12 +80,18 @@ function Main({ toggleModal }) {
   // Filter cards based on the selected filter value
   useEffect(() => {
     let filtered = cards;
-    if (filter === "MAJOR") {
+    if (filter === "ALL") {
+      mainSearchBar.value = "";
+      filtered = cards
+    } else if (filter === "MAJOR") {
       filtered = cards.filter((card) => card.type === "major");
     } else if (filter === "MINOR") {
       filtered = cards.filter((card) => card.type === "minor");
     } else if (filter === "FACE") {
       filtered = cards.filter((card) => card.category === "court");
+    }
+    else {
+      console.log("No used expressions");
     }
     setFilteredCards(filtered);
   }, [filter, cards]);
@@ -127,7 +131,7 @@ function Main({ toggleModal }) {
 
           <select name="" id="filter" onChange={handleFilterChange}>
             <option value="">Null</option>
-            <option value="">All</option>
+            <option value="ALL">All</option>
             <option value="MAJOR">Major Arcana</option>
             <option value="MINOR">Minor Arcana</option>
             <option value="FACE">Face Cards</option>

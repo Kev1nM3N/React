@@ -14,7 +14,7 @@ function Nav({ toggleModal }) {
 const location = useLocation();
 
 const navStyle = {
-  backgroundColor: location.pathname === "/main" ? "#fff8e7" : "initial"
+  backgroundColor: location.pathname.startsWith("/main") || location.pathname.startsWith("/search") ? "#fff8e7" : "initial"
 };
 
   return (
