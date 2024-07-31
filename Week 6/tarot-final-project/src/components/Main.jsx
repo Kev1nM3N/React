@@ -75,7 +75,9 @@ function Main({ toggleModal }) {
     setTimeout(() => {
       let loadingBackground = document.querySelector(".loading__background")
       fetchCards();
-      loadingBackground.remove();
+      if (loadingBackground){
+        loadingBackground.remove();
+      }
     }, 2000);
   }, []);
 
@@ -171,3 +173,4 @@ function Main({ toggleModal }) {
 }
 
 export default Main;
+
