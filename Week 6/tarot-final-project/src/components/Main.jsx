@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import tarotBackDesign from "../assets/Tarot back design.jpg";
 import Footer from "./Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import cardImageMapping from "../cardImageMapping";
@@ -12,9 +12,9 @@ function Main({ toggleModal }) {
   const { query } = useParams();
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
-  const [filter, setFilter] = useState(""); // State to store the filter value
+  const [filter, setFilter] = useState("ALL"); // State to store the filter value
   const navigate = useNavigate();
-  let mainSearchBar = document.querySelector(".mainSearchBar")
+  const searchBarRef = useRef(null);
 
   async function fetchCards(searchTerm = '') {
     const response = await axios.get("https://tarotapi.dev/api/v1/cards");
@@ -85,8 +85,10 @@ function Main({ toggleModal }) {
   useEffect(() => {
     let filtered = cards;
     if (filter === "ALL") {
-      mainSearchBar.value = "";
-      filtered = cards
+      if (searchBarRef.current) {
+        searchBarRef.current.value = "";
+      }
+      filtered = cards;
       console.log(filtered);
     } else if (filter === "MAJOR") {
       filtered = cards.filter((card) => card.type === "major");
@@ -112,8 +114,7 @@ function Main({ toggleModal }) {
   }
 
   function singleCardSearch() {
-    const searchBar = document.querySelector('.mainSearchBar');
-    const searchBarValue = searchBar.value;
+    const searchBarValue = searchBarRef.current.value;
     navigate(`/main`);
     fetchCards(searchBarValue);
   }
@@ -121,7 +122,7 @@ function Main({ toggleModal }) {
   return (
     <>
         <div className="mainSearchBox">
-            <input onKeyDown={(event) => {
+            <input ref={searchBarRef} onKeyDown={(event) => {
               if (event.key === 'Enter'){
                 singleCardSearch()
               }
