@@ -87,6 +87,7 @@ function Main({ toggleModal }) {
     if (filter === "ALL") {
       mainSearchBar.value = "";
       filtered = cards
+      console.log(filtered);
     } else if (filter === "MAJOR") {
       filtered = cards.filter((card) => card.type === "major");
     } else if (filter === "MINOR") {
