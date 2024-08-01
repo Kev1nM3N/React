@@ -41,10 +41,10 @@ const navStyle = {
             <li className="link__hover-effect">Browse Cards</li>
           </Link>
           <Link to={null}>
-            <li className="link__hover-effect">Login</li>
+            <li style={{cursor: "no-drop"}} className="link__hover-effect">Login</li>
           </Link>
           <Link to={null}>
-            <button className="registerButton">Register</button>
+            <button style={{cursor: "no-drop"}} className="registerButton">Register</button>
           </Link>
         </ul>
 
